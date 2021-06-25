@@ -1,0 +1,98 @@
+ A regular expression is a special sequence of characters that describe a pattern of text that
+ should be found, or matched, in a string or document. By matching text, we can identify how often
+ and where certain pieces of text occur, as well as have the opportunity to replace or update these
+ pieces of text if needed.
+
+Regular Expressions have a variety of use cases including:
+- validating user input in HTML forms
+- verifying and parsing text in files, code and applications
+- examining test results
+- finding keywords in emails and web pages
+
+Ways to use it:
+
+Literals:
+- This is where our regular expression contains the exact text that we want to match
+- The regex a, for example, will match the text a, and the regex bananas will match the text bananas.
+
+Alternation:
+- Alternation, performed in regular expressions with the pipe symbol, |, allows us to match either the
+  characters preceding the | OR the characters after the |.
+- The regex baboons|gorillas will match baboons in the text I love baboons, but will also match gorillas
+  in the text I love gorillas.
+
+Character sets:
+- denoted by a pair of brackets [], let us match one character from a series of characters, allowing for
+  matches with incorrect or different spellings.
+- The regex con[sc]en[sc]us will match consensus, the correct spelling of the word, but also match the
+  following three incorrect spellings: concensus, consencus, and concencus
+- the regex [cat] will match the characters c, a, or t, but not the text cat.
+- the ^ negates the set, matching any character that is not stated. These are called negated character sets.
+  Thus the regex [^cat] will match any character that is not c, a, or t
+
+Wildcards:
+- Wildcards will match any single character (letter, number, symbol or whitespace) in a piece of text.
+  They are useful when we do not care about the specific value of a character, but only that a character
+  exists!
+- Let’s say we want to match any 9-character piece of text. The regex ......... will completely match
+- What happens if we want to match an actual period, .? We can use the escape character, \
+
+Ranges:
+- Ranges allow us to specify a range of characters in which we can make a match without having to type\
+  out each individual character
+- The regex [abc], which would match any character a, b, or c, is equivalent to regex range [a-c]
+- we can match any single capital letter with the regex [A-Z], lowercase letter with the regex [a-z],
+  any digit with the regex [0-9]
+- To match any single capital or lowercase alphabetical character, we can use the regex [A-Za-z]
+
+Shorthand character classes:
+- While character ranges are extremely useful, they can be cumbersome to write out every single time
+  you want to match common ranges
+- shorthand character classes represent common ranges
+\w: the “word character” class represents the regex range [A-Za-z0-9_], and it matches a single uppercase character, lowercase character, digit or underscore
+\d: the “digit character” class represents the regex range [0-9], and it matches a single digit character
+\s: the “whitespace character” class represents the regex range [ \t\r\n\f\v], matching a single space, tab, carriage return, line break, form feed, or vertical tab
+\W: the “non-word character” class represents the regex range [^A-Za-z0-9_], matching any character that is not included in the range represented by \w
+\D: the “non-digit character” class represents the regex range [^0-9], matching any character that is not included in the range represented by \d
+\S: the “non-whitespace character” class represents the regex range [^ \t\r\n\f\v], matching any character that is not included in the range represented by \s
+
+Grouping:
+- Grouping, denoted with the open parenthesis ( and the closing parenthesis ), lets us group parts of a
+  regular expression together, and allows us to limit alternation to part of the regex.
+- The regex I love (baboons|gorillas) will match the text I love and then match either baboons or gorillas
+- These groups are also called capture groups, as they have the power to select, or capture, a substring
+  from our matched text.
+
+Fixed quantifiers:
+- Fixed quantifiers, denoted with curly braces {}, let us indicate the exact quantity of a character we
+  wish to match, or allow us to provide a quantity range to match on.
+- \w{3} will match exactly 3 word characters
+- \w{4,7} will match at minimum 4 word characters and at maximum 7 word characters
+- roa{3}r will match the characters ro followed by 3 as, and then the character r
+- they are greedy.  greedy. This means that they will match the greatest quantity of characters they
+  possibly can. For example, the regex mo{2,4} will match the text moooo in the string moooo, and not
+  return a match of moo, or mooo
+
+Optional quantifiers:
+- Optional quantifiers, indicated by the question mark ?, allow us to indicate a character in a regex
+  is optional, or can appear either 0 times or 1 time
+- useful in, say, the slight nuances with British words and American words (e.g. humor vs humour)
+- the regex humou?r matches the characters humo, then either 0 occurrences or 1 occurrence of the letter u,
+  and finally the letter r
+- can make groups optional with grouping
+- use \ to represent ? itself
+
+Kleene quantifiers:
+- The Kleene star, denoted with the asterisk *, is also a quantifier, and matches the preceding character
+  0 or more times.
+- The regex meo*w will match the characters me, followed by 0 or more os, followed by a w
+- the Kleene plus, denoted by the plus +, matches the preceding character 1 or more times.
+- The regex meo+w will match the characters me, followed by 1 or more os, followed by a w
+- thus, use \ to represent * and + itself
+
+Anchors:
+- The anchors hat ^ and dollar sign $ are used to match text at the start and the end of a string, respectively.
+- e.g. ^Monkeys: my mortal enemy$. The ^ ensures that the matched text begins with Monkeys, and the $
+  ensures the matched text ends with enemy
+- use \ for representing ^ and $
+

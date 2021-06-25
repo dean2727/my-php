@@ -1,0 +1,55 @@
+<!--
+client-side validation:
+advantages:
+-  it’s a better experience for the user to be alerted to problematic data immediately
+rather than having to wait for that information to come back from the server and have
+to fill out the form again
+-  catching mistakes earlier in the process saves the application time and resources 
+
+Front-end validation is for a better user experience, NOT security.
+JavaScript is used for more complicated form validation. If we’re creating a relatively simple website,
+it makes sense to code the form validation ourselves or use a simple vanilla JavaScript library
+(just-validate or Parsley.js, for example). But most basic validation
+libraries will involve directly accessing or manipulating the DOM. This can get tricky when working
+with a framework that relies on a virtual DOM—like React or Vue. In those situations, it might be
+best to incorporate a library that works well with your specific framework. For example, the formik
+library is a lightweight library that simplifies validating forms in a React app.
+
+server-side validation:
+advantages:
+- It enables us to use validation code often on machines with more computing power.
+- It allows us to write validation code that a user can’t see—if malicious users can’t see exactly
+how we validate the data, it’s much more difficult for them to find ways around it.
+- We can validate the information against other data the front-end doesn’t have access to—for
+example, we can check our database to see if a given username is already in use.
+
+2 ways to validate on server side:
+1. while the user is still inputting data into the form on the front-end. We can make asynchronous
+requests to the server with pieces of their data and send feedback directly to the user before they’ve
+submitted. This is slower than front-end validation and can be a design challenge from a user-experience perspective.
+2. once the form has been submitted. Back-end form validation is our application’s last defense against
+problematic data, and it’s essential to verify the validity and safety of data before adding it to a
+database. This is also an opportunity to “sanitize” the data: in order for our database to be useful, it’s
+important that all data within it is formatted consistently. This means that while we may want to be
+flexible about the formatting we require from a user, we likely want to transform inputs into a strict
+format before entering them in the database.
+-->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <body>
+    <h1>Basic HTML Validation</h1>
+    <form action="" method="POST">
+      <label for="text">Enter your name here:</label>
+    	<input id="name" name="name" type="text" required minlength="3" maxlength="100">
+      <br><br>
+      <label for="number">Enter your age here:</label>
+      <input type="number" name="age" id="age" required min="1" max="123">
+      <br><br>
+        <label for="code">Best place to learn to code: (hint: starts with a "C")</label>
+  <input id="code" name="code" type="text" required pattern="[cC]odecademy">
+      <br><br>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
